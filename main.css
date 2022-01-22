@@ -18,7 +18,7 @@ body {
 	color: white;
 	background: var(--back);
 	width: 100vw;
-	height: 100vh;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -28,7 +28,7 @@ header {
 	display: flex;
 	justify-content: center;
 	border-bottom: 1px solid var(--grey);
-	margin-bottom: 3rem;
+	margin-bottom: 2.5rem;
 }
 
 header .logo {
