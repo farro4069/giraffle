@@ -1,3 +1,4 @@
+const logo = document.querySelector('.logo');
 const keyboard = document.querySelectorAll('.keyboard-key');
 const attemptA = document.querySelector('.attemptA');
 const attemptB = document.querySelector('.attemptB');
@@ -95,6 +96,12 @@ function realAnswerTest(realAnswer) {
 	realLetter = realAnswer.split('');
 }
 
+function giveUp() {
+	const giveUpMessage = `The word was "${realAnswer}".`
+	alert(giveUpMessage);
+	gameOver = true;
+}
+
 
 // ************************************************************
 
@@ -111,3 +118,4 @@ fetch('words5.json')
 
 
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
+logo.addEventListener('click', giveUp);
