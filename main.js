@@ -51,11 +51,14 @@ function checkGuess(guess) {
 	return true;
 }
 
-function scoreKeys(k) {
+function scoreKeys(k, i) {
 	if(k.dataset.number == attempt[i]) {
 		k.classList.add('nah');
 		if(realAnswer.search(attempt[i], 0) >= 0) {
 			k.classList.replace('nah', 'close');
+			if (attempt[i] == realLetter[i]) {
+				k.classList.replace('close', 'yeah');
+			}
 		}
 	}
 } 
@@ -72,7 +75,7 @@ function score() {
 			if (attempt[i] == realLetter[i]) { 
 				currentAttempt.children[i].classList.replace('close', 'yeah');
 			}
-			keyboard.forEach(k => scoreKeys(k));
+			keyboard.forEach(k => scoreKeys(k ,i));
 				
 			
 		}
