@@ -1,4 +1,7 @@
 const logo = document.querySelector('.logo');
+const instruct = document.querySelector('.btn-info');
+const modal = document.querySelector('.modal');
+const closeBtn = document.querySelector('.btn-close');
 const keyboard = document.querySelectorAll('.keyboard-key');
 const attemptA = document.querySelector('.attemptA');
 const attemptB = document.querySelector('.attemptB');
@@ -105,6 +108,14 @@ function giveUp() {
 	gameOver = true;
 }
 
+function showInstruct() {
+	modal.style.display = 'block';
+}
+
+function hideInstruct() {
+	modal.style.display = 'none';
+}
+
 
 // ************************************************************
 
@@ -122,3 +133,5 @@ fetch('words5.json')
 
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
 logo.addEventListener('click', giveUp);
+instruct.addEventListener('click', showInstruct);
+closeBtn.addEventListener('click', hideInstruct);
