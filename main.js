@@ -70,11 +70,10 @@ function scoreKeys(k, i) {
 function checkScore(checkLetter) {
 	if (attempt[i] == realLetter[i]) {
 		currentAttempt.children[i].classList.replace('nah', 'yeah');
-		checkLetter.splice(i, 1);
-		checkLetter.forEach(a => checkWord = checkWord + a); 
+		checkLetter.splice(checkWord.search(attempt[i]), 1);
+		checkWord = '';
+		checkLetter.forEach(a => checkWord = checkWord + a);
 	}
-
-
 	return
 }
 
@@ -83,7 +82,9 @@ function score() {
 		checkLetter.forEach(a => checkWord = checkWord + a); 
 	for (i=0; i < attempt.length; i++) {
 		currentAttempt.children[i].classList.add('nah');
-		checkScore(checkLetter, attempt, i);
+	}
+	for (i=0; i < attempt.length; i++) {
+		checkScore(checkLetter, attempt);
 	};
 	for (i=0; i < attempt.length; i++) {
 		if (checkWord.search(attempt[i], 0) >= 0) {
