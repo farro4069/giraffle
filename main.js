@@ -71,6 +71,7 @@ function checkScore(checkLetter) {
 	if (attempt[i] == realLetter[i]) {
 		currentAttempt.children[i].classList.replace('nah', 'yeah');
 		checkLetter.splice(i, 1);
+		checkLetter.forEach(a => checkWord = checkWord + a); 
 	}
 
 
