@@ -21,6 +21,7 @@ let letterInd = 0;
 let attempt = [];
 let letter;
 let guess = '';
+let checkWord = '';
 
 function placeLetter(e) {
 	if(gameOver) {return};
@@ -66,29 +67,35 @@ function scoreKeys(k, i) {
 	}
 } 
 
-function score() {
-	attempt.forEach(a => guess = guess + a);
-	const validGuess = allWords.findIndex(checkGuess);
-	if (checkGuess()) {
-		for (i=0; i<5; i++) {
-			currentAttempt.children[i].classList.add('nah');
-			if (realAnswer.search(attempt[i], 0) >= 0) { 
-				currentAttempt.children[i].classList.replace('nah', 'close');
-			}
-			if (attempt[i] == realLetter[i]) { 
-				currentAttempt.children[i].classList.replace('close', 'yeah');
-			}
-			keyboard.forEach(k => scoreKeys(k ,i));
-				
-			
-		}
-		reset();
+function checkScore(checkLetter) {
+	if (attempt[i] == realLetter[i]) {
+		currentAttempt.children[i].classList.replace('nah', 'yeah');
+		checkLetter.splice(i, 1);
 	}
+
+
 	return
+}
+
+function score() {
+	let checkLetter = [...realLetter];
+		checkLetter.forEach(a => checkWord = checkWord + a); 
+	for (i=0; i < attempt.length; i++) {
+		currentAttempt.children[i].classList.add('nah');
+		checkScore(checkLetter, attempt, i);
+	};
+	for (i=0; i < attempt.length; i++) {
+		if (checkWord.search(attempt[i], 0) >= 0) {
+			currentAttempt.children[i].classList.replace('nah', 'close');
+		}
+		keyboard.forEach(k => scoreKeys(k ,i));
+	}
+	reset();
 }
 
 function reset() {
 	guess = '';
+	checkWord = '';
 	attempt = [];
 	letterInd = 0;
 	attemptNumber ++;
@@ -96,7 +103,6 @@ function reset() {
 	currentAttempt = allAttempts[attemptNumber];
 	return;	
 }
-
 
 function realAnswerTest(realAnswer) {
 	realLetter = realAnswer.split('');
