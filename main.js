@@ -26,12 +26,14 @@ let attempt = [];
 let letter;
 let guess = '';
 let checkWord = '';
+let isValid;
+
 
 function placeLetter(e) {
 	if(gameOver) {return};
 	letter = e.target.dataset.number;
 	if(letter == 'enter' && letterInd == 5 ) {
-		score ();
+		checkGuess(attempt);
 	} else {
 		if(letter == 'bspace' && letterInd > 0 ) {
 			letterInd --;
@@ -53,10 +55,20 @@ function placeLetter(e) {
 	}
 }
 
-function checkGuess(guess) {
+function shakeIt() {
+	currentAttempt.classList.add('invalid');
+	setTimeout(() => {currentAttempt.classList.remove('invalid')}, 800);
+	guess = '';
+}
 
-	console.log('did not check');
-	return true;
+function checkGuess(attempt) {
+	attempt.forEach(a => guess = guess + a);
+	isValid = allWords.findIndex(({word})=> word == guess);
+	if (isValid < 0) {
+		shakeIt();
+	} else {
+		score();
+	}
 }
 
 function scoreKeys(k, i) {
