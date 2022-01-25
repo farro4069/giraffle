@@ -1,7 +1,9 @@
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
-const modal = document.querySelector('.modal');
-const closeBtn = document.querySelector('.btn-close');
+const modalGiveUp = document.querySelector('.modal__giveup');
+const modalHints = document.querySelector('.modal__hints');
+const closeGiveUp = document.querySelector('.btn-close__giveup');
+const closeHints = document.querySelector('.btn-close__hints');
 const keyboard = document.querySelectorAll('.keyboard-key');
 const attemptA = document.querySelector('.attemptA');
 const attemptB = document.querySelector('.attemptB');
@@ -9,6 +11,8 @@ const attemptC = document.querySelector('.attemptC');
 const attemptD = document.querySelector('.attemptD');
 const attemptE = document.querySelector('.attemptE');
 const attemptF = document.querySelector('.attemptF');
+const surrender = document.querySelector('.surrender');
+
 
 let gameOver = false;
 let allWords = [];
@@ -111,17 +115,20 @@ function realAnswerTest(realAnswer) {
 }
 
 function giveUp() {
-	const giveUpMessage = `The word was "${realAnswer}".`
-	alert(giveUpMessage);
+	modalGiveUp.style.display = 'block';
+
+	for (i=0; i<realLetter.length; i++) {
+		surrender.children[i].textContent = realLetter[i];
+	}
 	gameOver = true;
 }
 
 function showInstruct() {
-	modal.style.display = 'block';
+	modalHints.style.display = 'block';
 }
 
 function hideInstruct() {
-	modal.style.display = 'none';
+	modalHints.style.display = 'none';
 }
 
 
@@ -142,4 +149,4 @@ fetch('words5.json')
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
 logo.addEventListener('click', giveUp);
 instruct.addEventListener('click', showInstruct);
-closeBtn.addEventListener('click', hideInstruct);
+closeHints.addEventListener('click', hideInstruct);

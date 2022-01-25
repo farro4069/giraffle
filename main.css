@@ -151,7 +151,7 @@ h1 {
 }
 
 
-.modal {
+.modal__hints {
 	display: none;
 	position: fixed;
 	top: 10vh;
@@ -166,12 +166,12 @@ h1 {
 	z-index: 1;
 }
 
-.modal h2 {
+.modal__hints h2 {
 	text-transform: uppercase;
 	color: var(--grey);
 }
 
-.btn-close {
+.btn-close__hints {
 	position: absolute;
 	top: 0;
 	right: 2vw;
@@ -187,6 +187,41 @@ h1 {
 	z-index: 2;
 }
 
+.modal__giveup {
+	display: none;
+	position: fixed;
+	top: 4rem;
+	left: 10vw;
+	margin: auto;
+
+}
+
+.modal__giveup ul {
+	list-style: none;
+	display: flex;
+	justify-content: space-evenly;
+	height: 3.3rem;
+	width: clamp(40vw, 80vw, 360px);
+}
+
+.modal__giveup li {
+	width: 20%;
+	border: 2px solid var(--back);
+	box-shadow: 0 0 0 2px var(--grey) inset;
+	padding: 0;
+	text-transform: uppercase;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.btn-close__giveup {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	margin: -0.7em -0.5em 0 0;
+	background-color: transparent;
+}
 
 
 
