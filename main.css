@@ -71,6 +71,7 @@ h1 {
 }
 
 .game {
+	position: relative;
 	margin: 2rem auto;
 	display: grid;
 }
@@ -191,7 +192,6 @@ h1 {
 	display: none;
 	position: fixed;
 	top: 4rem;
-	left: 10vw;
 	margin: auto;
 
 }
@@ -259,6 +259,10 @@ h1 {
 	.game li {
 		padding: 0.4em 0;
 		font-size: 2rem;
+	}
+
+	.modal__giveup {
+		top: 7rem;
 	}
 
 	.keyboard-row,
