@@ -99,10 +99,10 @@ function score() {
 	for (i=0; i < attempt.length; i++) {
 		currentAttempt.children[i].classList.add('nah');
 	}
-	for (i=0; i < attempt.length; i++) {
+	for (i=(attempt.length - 1); i >= 0; i--) {
 		checkScore(checkLetter, attempt);
 	};
-	for (i=0; i < attempt.length; i++) {
+	for (i=(attempt.length - 1); i >= 0; i--) {
 		if (checkWord.search(attempt[i], 0) >= 0) {
 			currentAttempt.children[i].classList.replace('nah', 'close');
 		}
