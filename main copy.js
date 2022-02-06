@@ -27,7 +27,6 @@ let letter;
 let guess = '';
 let checkWord = '';
 let isValid;
-let idx =1;
 
 
 function placeLetter(e) {
@@ -62,22 +61,10 @@ function shakeIt() {
 	guess = '';
 }
 
-
-function danceIt() {
-	dancers = Array.from(currentAttempt.children);
-	dancers.forEach(dancer => {
-		dancer.classList.add('solved');
-		idx++;
-		setTimeout(() => {
-			dancer.classList.remove('solved');
-		}, idx * 200);
-	})
-}
-
 function checkGuess(attempt) {
 	attempt.forEach(a => guess = guess + a);
-	isValid = allowedWords.includes(guess);
-	if (!isValid) {
+	isValid = allWords.findIndex(({word})=> word == guess);
+	if (isValid < 0) {
 		shakeIt();
 	} else {
 		score();
@@ -103,6 +90,7 @@ function checkScore(checkLetter) {
 		checkWord = '';
 		checkLetter.forEach(a => checkWord = checkWord + a);
 	}
+	return
 }
 
 function score() {
@@ -124,20 +112,14 @@ function score() {
 }
 
 function reset() {
-	if (guess == realAnswer) {
-		danceIt();
-		gameOver = true;
-		keyboard.forEach(key => key.removeEventListener('click', placeLetter));
-
-	} else {
-		guess = '';
-		checkWord = '';
-		attempt = [];
-		letterInd = 0;
-		attemptNumber ++;
-		if(attemptNumber > 5) {gameOver = true};
-		currentAttempt = allAttempts[attemptNumber];
-	}
+	guess = '';
+	checkWord = '';
+	attempt = [];
+	letterInd = 0;
+	attemptNumber ++;
+	if(attemptNumber > 5) {gameOver = true};
+	currentAttempt = allAttempts[attemptNumber];
+	return;	
 }
 
 function realAnswerTest(realAnswer) {
@@ -145,7 +127,7 @@ function realAnswerTest(realAnswer) {
 }
 
 function giveUp() {
-	modalGiveUp.style.display = 'grid';
+	modalGiveUp.style.display = 'block';
 
 	for (i=0; i<realLetter.length; i++) {
 		surrender.children[i].textContent = realLetter[i];
@@ -164,22 +146,15 @@ function hideInstruct() {
 
 // ************************************************************
 
-fetch('targetWords.json')
+
+fetch('words5.json')
 	.then (response => response.json())
 	.then (loadedWords => {
 		allWords = loadedWords;
 		wordNumber = Math.floor(Math.random() * allWords.length);
-		realAnswer = allWords[wordNumber];
-		console.log(realAnswer);
+		realAnswer = allWords[wordNumber].word;
 		realAnswerTest(realAnswer);
 	})
-
-fetch('dictionary.json')
-	.then (response => response.json())
-	.then (loadedWords => {
-		allowedWords = loadedWords;
-	})
-
 
 
 
