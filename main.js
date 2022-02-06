@@ -12,7 +12,10 @@ const attemptD = document.querySelector('.attemptD');
 const attemptE = document.querySelector('.attemptE');
 const attemptF = document.querySelector('.attemptF');
 const surrender = document.querySelector('.surrender');
+const modalGameOver = document.querySelector('.modal__gameover');
 const playAgain = document.querySelector('.again');
+const socialShare = document.querySelector('.share');
+
 
 
 let gameOver = false;
@@ -128,7 +131,7 @@ function reset() {
 	if (guess == realAnswer) {
 		danceIt();
 		gameOver = true;
-		playAgain.style.display = 'flex';
+		modalGameOver.style.display = 'grid';
 		keyboard.forEach(key => key.removeEventListener('click', placeLetter));
 
 	} else {

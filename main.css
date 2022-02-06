@@ -2,7 +2,7 @@
 	--back: hsl(240, 3%, 7%);
 	--dark: #505050;
 	--green: #309945;
-	--grey: #888;
+	--grey: #937d7d;
 	--red: #db481b;
 	--white:  #eee;
 	--yellow: #ddc338;
@@ -58,11 +58,20 @@ header .logo {
 	cursor: pointer;
 }
 
-.again {
+.modal__gameover {
 	display: none;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 3em;
+	grid-gap: 0.5em;
+	width: 90vw;
+	margin: 0 auto;
+}
+
+.again, 
+.share {
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 4em;
 	padding: 1em;
 	color: var(--white);
 	background: var(--green);
@@ -79,7 +88,7 @@ footer {
 }
 
 h1 {
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	text-transform: uppercase;
 	letter-spacing: 4px;
 }
@@ -113,10 +122,11 @@ h1 {
 .keyboard {
 	display: grid;
 	grid-template-columns: repeat(20, minmax(auto, 1.25em));
-	grid-auto-rows: 3em;
+	grid-auto-rows: 3.2em;
 	grid-gap: 0.25em;
 	justify-content: center;
 	list-style: none;
+	margin-bottom: 3em;
 }
 
 
