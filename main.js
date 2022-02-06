@@ -12,6 +12,7 @@ const attemptD = document.querySelector('.attemptD');
 const attemptE = document.querySelector('.attemptE');
 const attemptF = document.querySelector('.attemptF');
 const surrender = document.querySelector('.surrender');
+const playAgain = document.querySelector('.again');
 
 
 let gameOver = false;
@@ -127,6 +128,7 @@ function reset() {
 	if (guess == realAnswer) {
 		danceIt();
 		gameOver = true;
+		playAgain.style.display = 'flex';
 		keyboard.forEach(key => key.removeEventListener('click', placeLetter));
 
 	} else {
@@ -161,6 +163,9 @@ function hideInstruct() {
 	modalHints.style.display = 'none';
 }
 
+function play() {
+	location.reload()
+}
 
 // ************************************************************
 
@@ -187,3 +192,4 @@ keyboard.forEach(key => key.addEventListener('click', placeLetter));
 logo.addEventListener('click', giveUp);
 instruct.addEventListener('click', showInstruct);
 closeHints.addEventListener('click', hideInstruct);
+playAgain.addEventListener('click', play);

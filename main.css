@@ -4,6 +4,7 @@
 	--green: #309945;
 	--grey: #888;
 	--red: #db481b;
+	--white:  #eee;
 	--yellow: #ddc338;
 }
 
@@ -18,11 +19,11 @@ body {
 	display: flex;
 	flex-direction: column;
 	font-family: Poppins, Arial, Helvetica, sans-serif;
-	font-size: clamp(0.5rem, 2.5vmin, 1.5rem);
-	color: white;
+	font-size: clamp(0.5rem, 3.2vmin, 1.5rem);
+	color: var(--white);
 	background: var(--back);
 	width: 100vw;
-	min-height: 110vh;
+	min-height: 100vh;
 }
 
 header {
@@ -55,6 +56,19 @@ header .logo {
 	border: 2px solid var(--grey);
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+.again {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	margin: 4em;
+	padding: 1em;
+	color: var(--white);
+	background: var(--green);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;	
 }
 
 footer {
