@@ -13,8 +13,9 @@ const attemptE = document.querySelector('.attemptE');
 const attemptF = document.querySelector('.attemptF');
 const surrender = document.querySelector('.surrender');
 const modalGameOver = document.querySelector('.modal__gameover');
-const playAgain = document.querySelector('.again');
-const socialShare = document.querySelector('.share');
+const playAgainButton = document.querySelector('.again');
+const shareButton = document.querySelector('.share');
+const sharePatch = document.querySelector('.share__patch')
 
 
 
@@ -31,7 +32,9 @@ let letter;
 let guess = '';
 let checkWord = '';
 let isValid;
-let idx =1;
+let idx = 1;
+let socialLetter = []; 
+let socialDisplay = []; 
 
 
 function placeLetter(e) {
@@ -100,7 +103,7 @@ function scoreKeys(k, i) {
 	}
 } 
 
-function checkScore(checkLetter) {
+function checkYeah(checkLetter) {
 	if (attempt[i] == realLetter[i]) {
 		currentAttempt.children[i].classList.replace('nah', 'yeah');
 		checkLetter.splice(checkWord.search(attempt[i]), 1);
@@ -116,11 +119,14 @@ function score() {
 		currentAttempt.children[i].classList.add('nah');
 	}
 	for (i=(attempt.length - 1); i >= 0; i--) {
-		checkScore(checkLetter, attempt);
+		checkYeah(checkLetter, attempt);
 	};
 	for (i=(attempt.length - 1); i >= 0; i--) {
 		if (checkWord.search(attempt[i], 0) >= 0) {
 			currentAttempt.children[i].classList.replace('nah', 'close');
+			checkLetter.splice(checkWord.search(attempt[i]), 1);
+			checkWord = '';
+			checkLetter.forEach(a => checkWord = checkWord + a);
 		}
 		keyboard.forEach(k => scoreKeys(k ,i));
 	}
@@ -155,6 +161,7 @@ function giveUp() {
 	for (i=0; i<realLetter.length; i++) {
 		surrender.children[i].textContent = realLetter[i];
 	}
+	modalGameOver.style.display = 'grid';
 	gameOver = true;
 }
 
@@ -170,6 +177,29 @@ function play() {
 	location.reload()
 }
 
+function socialShare() {
+	resultGrid = `Giraffle ${wordNumber} ${attemptNumber + 1}/6`;
+	for (a = 0; a < (attemptNumber+1); a++) {
+		for (i = 0; i < 5; i++) {
+			if (allAttempts[a].children[i].classList.contains('yeah')) {
+				socialLetter[i] = '🟩';
+			} else {
+				if (allAttempts[a].children[i].classList.contains('close')) {
+					socialLetter[i] = '🟨';
+				} else {
+					socialLetter[i] = '⬜';
+				}
+			}
+		}
+		socialDisplay[a] = '';
+		socialLetter.forEach((letter) => socialDisplay[a] = socialDisplay[a] + letter);
+		resultGrid = resultGrid + '\n' + socialDisplay[a];
+	}
+
+	let sharePatchContent = resultGrid;
+	navigator.clipboard.writeText(sharePatchContent);
+}
+
 // ************************************************************
 
 fetch('targetWords.json')
@@ -178,7 +208,6 @@ fetch('targetWords.json')
 		allWords = loadedWords;
 		wordNumber = Math.floor(Math.random() * allWords.length);
 		realAnswer = allWords[wordNumber];
-		console.log(realAnswer);
 		realAnswerTest(realAnswer);
 	})
 
@@ -195,4 +224,5 @@ keyboard.forEach(key => key.addEventListener('click', placeLetter));
 logo.addEventListener('click', giveUp);
 instruct.addEventListener('click', showInstruct);
 closeHints.addEventListener('click', hideInstruct);
-playAgain.addEventListener('click', play);
+playAgainButton.addEventListener('click', play);
+shareButton.addEventListener('click', socialShare);

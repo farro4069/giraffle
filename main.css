@@ -16,14 +16,19 @@
 }
 
 body {
-	display: flex;
-	flex-direction: column;
 	font-family: Poppins, Arial, Helvetica, sans-serif;
 	font-size: clamp(0.5rem, 3.2vmin, 1.5rem);
 	color: var(--white);
 	background: var(--back);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
 	width: 100vw;
-	min-height: 100vh;
+	min-height: 85vh;
 }
 
 header {
@@ -80,6 +85,19 @@ header .logo {
 	cursor: pointer;	
 }
 
+.share:hover {
+	color: var(--yellow);
+}
+
+.share:active {
+	background: var(--grey);
+}
+
+.share__patch {
+	display: none;
+}
+
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -94,7 +112,6 @@ h1 {
 }
 
 .game {
-	position: relative;
 	margin: 2rem auto 3rem;
 	display: grid;
 	grid-template-columns: 1fr;
@@ -239,7 +256,9 @@ h1 {
 	display: none;
 	grid-template-rows: 4em;
 	position: fixed;
-	top: 4rem;
+	top: 0;
+	margin: 5rem 50%;
+	transform: translateX(-50%);
 }
 
 .modal__giveup ul {
@@ -288,11 +307,11 @@ h1 {
 }
 
 @keyframes dance {
-	10% {transform: translateY( 5px );}
-	30% {transform: translateY( 0px );}
-	50% {transform: translateY( 7px );}
-	70% {transform: translateY( 0px );}	
-	90% {transform: translateY( 9px );}	
+	10% {transform: translateY( -10px );}
+	30% {transform: translateY( 2px );}
+	50% {transform: translateY( -7px );}
+	70% {transform: translateY( 1px );}	
+	90% {transform: translateY( -5px );}	
 	100% {transform: translateY( 0px );}	
 }
 
