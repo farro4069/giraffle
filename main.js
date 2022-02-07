@@ -1,5 +1,6 @@
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
+const modalAlert = document.querySelector('.modal__alert');
 const modalGiveUp = document.querySelector('.modal__giveup');
 const modalHints = document.querySelector('.modal__hints');
 const closeGiveUp = document.querySelector('.btn-close__giveup');
@@ -24,6 +25,7 @@ let allWords = [];
 let realAnswer = "";
 let realLetter =[];
 let attemptNumber = 0;
+const winMessage = ['Impossible', 'Genius', 'Outstanding', 'Well done', 'Congrats', 'Fine line', 'Only just'];
 let allAttempts = [attemptA, attemptB, attemptC, attemptD, attemptE, attemptF]
 let currentAttempt = allAttempts[attemptNumber];
 let letterInd = 0;
@@ -36,6 +38,11 @@ let idx = 1;
 let socialLetter = []; 
 let socialDisplay = []; 
 
+
+function modalNote(message) {
+	modalAlert.textContent = message;
+	modalAlert.classList.add('modal__notice');
+}
 
 function placeLetter(e) {
 	if(gameOver) {return};
@@ -137,6 +144,8 @@ function reset() {
 	if (guess == realAnswer) {
 		danceIt();
 		gameOver = true;
+		message = winMessage[attemptNumber];
+		modalNote(message);
 		modalGameOver.style.display = 'grid';
 		keyboard.forEach(key => key.removeEventListener('click', placeLetter));
 
@@ -198,6 +207,8 @@ function socialShare() {
 
 	let sharePatchContent = resultGrid;
 	navigator.clipboard.writeText(sharePatchContent);
+	modalNote('copied');
+
 }
 
 // ************************************************************
@@ -222,6 +233,7 @@ fetch('dictionary.json')
 
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
 logo.addEventListener('click', giveUp);
+modalAlert.addEventListener('transitionend', () => modalAlert.classList.remove('modal__notice'));
 instruct.addEventListener('click', showInstruct);
 closeHints.addEventListener('click', hideInstruct);
 playAgainButton.addEventListener('click', play);
