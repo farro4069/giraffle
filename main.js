@@ -187,7 +187,7 @@ function play() {
 }
 
 function socialShare() {
-	resultGrid = `Giraffle ${wordNumber} ${attemptNumber + 1}/6`;
+	resultGrid = `Giraffle ${wordNumber} ${attemptNumber + 1}/6 \n`;
 	for (a = 0; a < (attemptNumber+1); a++) {
 		for (i = 0; i < 5; i++) {
 			if (allAttempts[a].children[i].classList.contains('yeah')) {

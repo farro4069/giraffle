@@ -17,7 +17,7 @@
 
 body {
 	font-family: Poppins, Arial, Helvetica, sans-serif;
-	font-size: clamp(0.5rem, 3.2vmin, 1.5rem);
+	font-size: clamp(0.5rem, 3vmin, 1.5rem);
 	color: var(--white);
 	background: var(--back);
 	min-height: 110vh;
@@ -160,9 +160,9 @@ h1 {
 
 .keyboard {
 	display: grid;
-	grid-template-columns: repeat(20, minmax(auto, 1.25em));
+	grid-template-columns: repeat(20, min(1.25em, 4vw));
 	grid-auto-rows: 3.2em;
-	grid-gap: 0.25em;
+	grid-gap: 1vw;
 	justify-content: center;
 	list-style: none;
 	margin-bottom: 3em;
