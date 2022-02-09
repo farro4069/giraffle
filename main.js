@@ -25,7 +25,7 @@ let allWords = [];
 let realAnswer = "";
 let realLetter =[];
 let attemptNumber = 0;
-const winMessage = ['Impossible', 'Genius', 'Outstanding', 'Well done', 'Congrats', 'Fine line', 'Only just'];
+const winMessage = ['Impossible', 'Genius', 'Outstanding', 'Well done', 'Congrats', 'Only just', 'Too many'];
 let allAttempts = [attemptA, attemptB, attemptC, attemptD, attemptE, attemptF]
 let currentAttempt = allAttempts[attemptNumber];
 let letterInd = 0;
@@ -70,6 +70,18 @@ function placeLetter(e) {
 	}
 }
 
+function flipIt() {
+	idx = 0;
+	dancers = Array.from(currentAttempt.children);
+	dancers.forEach(dancer => {
+		dancer.classList.add('tile_flip');
+		idx++;
+		setTimeout(() => {
+			dancer.classList.remove('tile_flip');
+		}, idx * 200);
+	})	
+}
+
 function shakeIt() {
 	currentAttempt.classList.add('invalid');
 	setTimeout(() => {currentAttempt.classList.remove('invalid')}, 800);
@@ -78,6 +90,7 @@ function shakeIt() {
 
 
 function danceIt() {
+	idx = 0;
 	dancers = Array.from(currentAttempt.children);
 	dancers.forEach(dancer => {
 		dancer.classList.add('solved');
@@ -98,45 +111,51 @@ function checkGuess(attempt) {
 	}
 }
 
-function scoreKeys(k, i) {
-	if(k.dataset.number == attempt[i]) {
-		k.classList.add('nah');
-		if(realAnswer.search(attempt[i], 0) >= 0) {
-			k.classList.replace('nah', 'close');
-			if (attempt[i] == realLetter[i]) {
-				k.classList.replace('close', 'yeah');
+function scoreKeys(k) {
+	for (i=0; i<5; i++) {
+		if(k.dataset.number == attempt[i]) {
+			k.classList.add('nah');
+			if(realAnswer.search(attempt[i], 0) >= 0) {
+				k.classList.replace('nah', 'close');
+				if (attempt[i] == realLetter[i]) {
+					k.classList.replace('close', 'yeah');
+				}
 			}
 		}
 	}
 } 
 
-function checkYeah(checkLetter) {
-	if (attempt[i] == realLetter[i]) {
-		currentAttempt.children[i].classList.replace('nah', 'yeah');
-		checkLetter.splice(checkWord.search(attempt[i]), 1);
-		checkWord = '';
-		checkLetter.forEach(a => checkWord = checkWord + a);
-	}
-}
-
-function score() {
+function score () {
 	let checkLetter = [...realLetter];
-		checkLetter.forEach(a => checkWord = checkWord + a); 
-	for (i=0; i < attempt.length; i++) {
+	// let checkAttempt = [...attempt];
+	checkLetter.forEach(a => checkWord = checkWord + a);
+
+	for (i = 0; i < attempt.length; i++) {
 		currentAttempt.children[i].classList.add('nah');
+		flipIt();
 	}
-	for (i=(attempt.length - 1); i >= 0; i--) {
-		checkYeah(checkLetter, attempt);
-	};
-	for (i=(attempt.length - 1); i >= 0; i--) {
-		if (checkWord.search(attempt[i], 0) >= 0) {
-			currentAttempt.children[i].classList.replace('nah', 'close');
+
+	for (i = attempt.length-1; i>=0; i--) {
+		if (attempt[i] == realLetter[i]) {
+			currentAttempt.children[i].classList.replace('nah', 'yeah');
 			checkLetter.splice(checkWord.search(attempt[i]), 1);
 			checkWord = '';
 			checkLetter.forEach(a => checkWord = checkWord + a);
 		}
-		keyboard.forEach(k => scoreKeys(k ,i));
 	}
+
+	for (i = 0; i < attempt.length; i++) {
+		if (!currentAttempt.children[i].classList.contains('yeah')) {
+		
+			if (checkWord.search(attempt[i], 0) >= 0) {
+				currentAttempt.children[i].classList.replace('nah', 'close');
+				checkLetter.splice(checkWord.search(attempt[i]), 1);
+				checkWord = '';
+				checkLetter.forEach(a => checkWord = checkWord + a);
+			}
+		}
+	}
+	keyboard.forEach(k => scoreKeys(k));
 	reset();
 }
 
