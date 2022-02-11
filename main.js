@@ -22,6 +22,7 @@ const sharePatch = document.querySelector('.share__patch')
 
 let gameOver = false;
 let allWords = [];
+let wordleNumber;
 let realAnswer = "";
 let realLetter =[];
 let attemptNumber = 0;
@@ -230,15 +231,33 @@ function socialShare() {
 
 }
 
+function todaysWordle() {
+	const lastWordleNumber = localStorage.wordle || '0';
+	const today = new Date();
+	const wordleStartDate = new Date('2021, 6, 19');
+	wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
+	localStorage.setItem('wordle', wordleNumber);
+	return (lastWordleNumber == wordleNumber)? true: false;
+}
+
+function selectAnswer(allWords) {
+	if (!todaysWordle()) {
+		wordNumber = wordleNumber
+	} else {
+		wordNumber = Math.floor(Math.random() * allWords.length);
+	}
+	realAnswer = allWords[wordNumber];
+	realAnswerTest(realAnswer);
+	}
+
+
 // ************************************************************
 
 fetch('targetWords.json')
 	.then (response => response.json())
 	.then (loadedWords => {
 		allWords = loadedWords;
-		wordNumber = Math.floor(Math.random() * allWords.length);
-		realAnswer = allWords[wordNumber];
-		realAnswerTest(realAnswer);
+		selectAnswer(allWords);
 	})
 
 fetch('dictionary.json')
