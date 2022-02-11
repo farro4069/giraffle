@@ -98,7 +98,7 @@ function danceIt() {
 		idx++;
 		setTimeout(() => {
 			dancer.classList.remove('solved');
-		}, idx * 200);
+		}, idx * 300);
 	})
 }
 
@@ -253,17 +253,17 @@ function selectAnswer(allWords) {
 
 // ************************************************************
 
-fetch('targetWords.json')
+fetch('targetWords.json', {credentials: 'same-origin'})
 	.then (response => response.json())
-	.then (loadedWords => {
-		allWords = loadedWords;
+	.then (data => {
+		allWords = data;
 		selectAnswer(allWords);
 	})
 
-fetch('dictionary.json')
+fetch('dictionary.json', {credentials: 'same-origin'})
 	.then (response => response.json())
-	.then (loadedWords => {
-		allowedWords = loadedWords;
+	.then (data => {
+		allowedWords = data;
 	})
 
 
