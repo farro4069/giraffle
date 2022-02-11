@@ -256,9 +256,11 @@ function selectAnswer(allWords) {
 fetch('targetWords.json', {credentials: 'same-origin'})
 	.then (response => response.json())
 	.then (data => {
-		allWords = data;
-		selectAnswer(allWords);
+		allWords = data})
+	.then (answer => {
+		selectAnswer(allWords)
 	})
+
 
 fetch('dictionary.json', {credentials: 'same-origin'})
 	.then (response => response.json())
