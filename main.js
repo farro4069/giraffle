@@ -260,6 +260,7 @@ fetch('targetWords.json', {credentials: 'same-origin'})
 	.then (answer => {
 		selectAnswer(allWords)
 	})
+	.catch (error => alert("I haven't got the words"))
 
 
 fetch('dictionary.json', {credentials: 'same-origin'})
