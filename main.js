@@ -253,15 +253,14 @@ function selectAnswer(allWords) {
 
 // ************************************************************
 
-fetch('targetWords.json', {credentials: 'same-origin'})
-	.then (response => response.json())
-	.then (data => {
-		allWords = data})
-	.then (answer => {
-		selectAnswer(allWords)
-	})
-	.catch (error => alert("I haven't got the words"))
+const start = async () => {
+	const response = await fetch('targetWords.json', {credentials: 'same-origin'})
+	const data = await response.json()
+	const allWords = data
+	selectAnswer(allWords)
+	}
 
+start();
 
 fetch('dictionary.json', {credentials: 'same-origin'})
 	.then (response => response.json())
