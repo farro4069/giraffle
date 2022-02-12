@@ -18,7 +18,7 @@ const playAgainButton = document.querySelector('.again');
 const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
 // const wordleNumber = todaysWordle();
-const wordNumber = todaysWord();
+const wordNumber = Math.floor(Math.random() * 2315);
 
 
 let gameOver = false;
@@ -230,7 +230,6 @@ function socialShare() {
 }
 
 function todaysWord() {
-	const wordNumber = Math.floor(Math.random() * 2315);
 	// const lastWordleNumber = localStorage.wordle || 0;
 	// localStorage.wordle = wordleNumber;
 	// const wordNumber = (lastWordleNumber == wordleNumber)? Math.floor(Math.random() * 2315): wordleNumber;
@@ -266,6 +265,7 @@ function getAllowedWords() {
 
 getAllowedWords();
 getTargetWords();
+
 
 
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
