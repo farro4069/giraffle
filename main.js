@@ -79,7 +79,7 @@ function flipIt() {
 		idx++;
 		setTimeout(() => {
 			dancer.classList.remove('tile_flip');
-		}, idx * 200);
+		}, idx * 200 + 200);
 	})	
 }
 
@@ -243,31 +243,27 @@ function todaysWordle() {
 
 // ************************************************************
 
-// const start = async () => {
-// 	const response = await fetch('targetWords.json', {credentials: 'same-origin'});
-// 	const data = await response.json();
-// 	const allWords = await data;
-// 	const realAnswer = await allWords[wordNumber];
-// 	const realLetter = await realAnswer.split('');
-// 	}
 
-// start();
-
-
-fetch('targetWords.json', {credentials: 'same-origin'})
-	.then (response => response.json())
-	.then (data => allWords = data)
-	.then (todaysAnswer => realAnswer = allWords[wordNumber])
-	.then (todaysLetters => realLetter = realAnswer.split(""))
-	.catch (err => alert('Somethings is rotten. I am trying to fix it'))
-
-fetch('dictionary.json', {credentials: 'same-origin'})
+function getTargetWords() {
+	fetch('targetWords.json', {credentials: 'same-origin'})
 	.then (response => response.json())
 	.then (data => {
-		allowedWords = data;
+		allWords = data
+		realAnswer = allWords[wordNumber]
+		realLetter = realAnswer.split("")
 	})
+	.catch (err => alert('Somethings is rotten. I am trying to fix it'));
+}
+
+function getAllowedWords() {
+	fetch('dictionary.json', {credentials: 'same-origin'})
+	.then (response => response.json())
+	.then (data => allowedWords = data)
+}
 
 
+getAllowedWords();
+getTargetWords();
 
 
 keyboard.forEach(key => key.addEventListener('click', placeLetter));
