@@ -230,7 +230,7 @@ function socialShare() {
 }
 
 function todaysWord() {
-	const lastWordleNumber = localStorage.wordle || '0';
+	const lastWordleNumber = localStorage.wordle || 0;
 	localStorage.setItem('wordle', wordleNumber);
 	const wordNumber = (lastWordleNumber == wordleNumber)? Math.floor(Math.random() * 2315): wordleNumber;
 	return wordNumber;
