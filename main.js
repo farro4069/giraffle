@@ -17,12 +17,12 @@ const modalGameOver = document.querySelector('.modal__gameover');
 const playAgainButton = document.querySelector('.again');
 const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
-
+const wordleNumber = todaysWordle();
+const wordNumber = todaysWord();
 
 
 let gameOver = false;
 let allWords = [];
-let wordleNumber;
 let realAnswer = "";
 let realLetter =[];
 let attemptNumber = 0;
@@ -227,37 +227,39 @@ function socialShare() {
 
 }
 
-function todaysWordle() {
+function todaysWord() {
 	const lastWordleNumber = localStorage.wordle || '0';
-	const today = new Date();
-	const wordleStartDate = new Date('2021, 6, 19');
-	wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
 	localStorage.setItem('wordle', wordleNumber);
-	return (lastWordleNumber == wordleNumber)? true: false;
+	const wordNumber = (lastWordleNumber == wordleNumber)? Math.floor(Math.random() * 2315): wordleNumber;
+	return wordNumber;
 }
 
-async function selectAnswer(allWords) {
-	if (!todaysWordle()) {
-		wordNumber = wordleNumber
-	} else {
-		wordNumber = Math.floor(Math.random() * allWords.length);
-	}
-	realAnswer = allWords[wordNumber];
-	}
-
+function todaysWordle() {
+	const today = new Date();
+	const wordleStartDate = new Date('2021, 6, 19');
+	const wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
+	return wordleNumber;
+}
 
 // ************************************************************
 
-const start = async () => {
-	const response = await fetch('targetWords.json', {credentials: 'same-origin'});
-	const data = await response.json();
-	const allWords = data;
-	const selectedAnswer = await selectAnswer(allWords);
-	const realLetter = await realAnswer.split('');
-	}
+// const start = async () => {
+// 	const response = await fetch('targetWords.json', {credentials: 'same-origin'});
+// 	const data = await response.json();
+// 	const allWords = await data;
+// 	const realAnswer = await allWords[wordNumber];
+// 	const realLetter = await realAnswer.split('');
+// 	}
 
-start();
+// start();
 
+
+fetch('targetWords.json', {credentials: 'same-origin'})
+	.then (response => response.json())
+	.then (data => allWords = data)
+	.then (todaysAnswer => realAnswer = allWords[wordNumber])
+	.then (todaysLetters => realLetter = realAnswer.split(""))
+	.catch (err => alert('Somethings is rotten. I am trying to fix it'))
 
 fetch('dictionary.json', {credentials: 'same-origin'})
 	.then (response => response.json())
