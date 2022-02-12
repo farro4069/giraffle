@@ -236,7 +236,7 @@ function todaysWordle() {
 	return (lastWordleNumber == wordleNumber)? true: false;
 }
 
-function selectAnswer(allWords) {
+async function selectAnswer(allWords) {
 	if (!todaysWordle()) {
 		wordNumber = wordleNumber
 	} else {
