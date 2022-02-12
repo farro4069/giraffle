@@ -34,6 +34,7 @@ let attempt = [];
 let letter;
 let guess = '';
 let checkWord = '';
+let checkLetter = [];
 let isValid;
 let idx = 1;
 let socialLetter = []; 
@@ -127,8 +128,9 @@ function scoreKeys(k) {
 } 
 
 function score () {
-	let checkLetter = [...realLetter];
-	// let checkAttempt = [...attempt];
+	realAnswer = allWords[wordNumber];
+	realLetter = realAnswer.split("");
+	checkLetter = [...realLetter];
 	checkLetter.forEach(a => checkWord = checkWord + a);
 
 	for (i = 0; i < attempt.length; i++) {
@@ -247,11 +249,7 @@ function todaysWordle() {
 function getTargetWords() {
 	fetch('targetWords.json', {credentials: 'same-origin'})
 	.then (response => response.json())
-	.then (data => {
-		allWords = data
-		realAnswer = allWords[wordNumber]
-		realLetter = realAnswer.split("")
-	})
+	.then (data => allWords = data)
 	.catch (err => {
 		console.log(err)
 		alert('Something is rotten. I am trying to fix it')
