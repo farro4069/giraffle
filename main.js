@@ -252,7 +252,10 @@ function getTargetWords() {
 		realAnswer = allWords[wordNumber]
 		realLetter = realAnswer.split("")
 	})
-	.catch (err => alert('Somethings is rotten. I am trying to fix it'));
+	.catch (err => {
+		console.log(err)
+		alert('Something is rotten. I am trying to fix it')
+	})
 }
 
 function getAllowedWords() {
