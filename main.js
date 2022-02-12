@@ -237,12 +237,12 @@ function todaysWord() {
 	// return wordNumber;
 }
 
-// function todaysWordle() {
+function todaysWordle() {
 // 	const today = new Date();
 // 	const wordleStartDate = new Date('2021, 6, 19');
 // 	const wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
 // 	return wordleNumber;
-// }
+}
 
 // ************************************************************
 
