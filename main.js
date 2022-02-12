@@ -18,7 +18,7 @@ const playAgainButton = document.querySelector('.again');
 const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
 const wordleNumber = todaysWordle();
-const wordNumber = Math.floor(Math.random() * 2315);
+const wordNumber = todaysWord();
 
 
 let gameOver = false;
@@ -231,10 +231,10 @@ function socialShare() {
 }
 
 function todaysWord() {
-	// const lastWordleNumber = localStorage.wordle || 0;
-	// localStorage.wordle = wordleNumber;
-	// const wordNumber = (lastWordleNumber == wordleNumber)? Math.floor(Math.random() * 2315): wordleNumber;
-	// return wordNumber;
+	const lastWordleNumber = localStorage.wordle || 0;
+	localStorage.wordle = wordleNumber;
+	const wordDays = (lastWordleNumber == wordleNumber)? Math.floor(Math.random() * 2315): wordleNumber;
+	return wordDays;
 }
 
 function todaysWordle() {
