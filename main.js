@@ -17,7 +17,7 @@ const modalGameOver = document.querySelector('.modal__gameover');
 const playAgainButton = document.querySelector('.again');
 const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
-const wordleNumber = todaysWordle();
+// const wordleNumber = todaysWordle();
 const wordNumber = todaysWord();
 
 
