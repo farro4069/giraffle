@@ -180,10 +180,6 @@ function reset() {
 	}
 }
 
-function realAnswerTest(realAnswer) {
-	realLetter = realAnswer.split('');
-}
-
 function giveUp() {
 	modalGiveUp.style.display = 'grid';
 
@@ -247,20 +243,21 @@ function selectAnswer(allWords) {
 		wordNumber = Math.floor(Math.random() * allWords.length);
 	}
 	realAnswer = allWords[wordNumber];
-	realAnswerTest(realAnswer);
 	}
 
 
 // ************************************************************
 
 const start = async () => {
-	const response = await fetch('targetWords.json', {credentials: 'same-origin'})
-	const data = await response.json()
-	const allWords = data
-	selectAnswer(allWords)
+	const response = await fetch('targetWords.json', {credentials: 'same-origin'});
+	const data = await response.json();
+	const allWords = data;
+	const selectedAnswer = await selectAnswer(allWords);
+	const realLetter = await realAnswer.split('');
 	}
 
 start();
+
 
 fetch('dictionary.json', {credentials: 'same-origin'})
 	.then (response => response.json())
