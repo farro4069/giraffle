@@ -17,7 +17,7 @@ const modalGameOver = document.querySelector('.modal__gameover');
 const playAgainButton = document.querySelector('.again');
 const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
-// const wordleNumber = todaysWordle();
+const wordleNumber = todaysWordle();
 const wordNumber = Math.floor(Math.random() * 2315);
 
 
@@ -92,6 +92,7 @@ function shakeIt() {
 
 
 function danceIt() {
+	setTimeout(() => {}, 2000)
 	idx = 0;
 	dancers = Array.from(currentAttempt.children);
 	dancers.forEach(dancer => {
@@ -237,10 +238,10 @@ function todaysWord() {
 }
 
 function todaysWordle() {
-// 	const today = new Date();
-// 	const wordleStartDate = new Date('2021, 6, 19');
-// 	const wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
-// 	return wordleNumber;
+	const today = new Date();
+	const wordleStartDate = new Date('2021, 6, 19');
+	const wordleNumber = Math.floor(((today.valueOf() - wordleStartDate.valueOf())/1000/60/60/24));
+	return wordleNumber;
 }
 
 // ************************************************************
