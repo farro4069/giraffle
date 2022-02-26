@@ -10,9 +10,17 @@ let modalClueItems = [];
 
 
 function getClues() {
+	clueWords = [...allowedWords].sort();
 	soFarLetters = [];	
 	soNotLetters = [];
 	keyboard.forEach(key => {
+		if (key.classList.contains('yeah')) {
+			if ([...realAnswer].filter(l => l === key.dataset.number).length === 1) {
+				console.log('it is unique');
+				clueWords = clueWords.filter(c => (c.indexOf(key.dataset.number, 0) == realAnswer.indexOf(key.dataset.number, 0)));
+			}
+		}
+
 		if (key.classList.contains('close') || key.classList.contains('yeah')) {
 			soFarLetters.push(key.textContent);
 		}
@@ -20,7 +28,6 @@ function getClues() {
 			soNotLetters.push(key.textContent);
 		}
 	})
-	clueWords = [...allowedWords];
 	soFarLetters.forEach(letter => clueWords = clueWords.filter(clue => clue.includes(letter)));
 	soNotLetters.forEach(letter => clueWords = clueWords.filter(clue => !clue.includes(letter)));
 	displayClues();
