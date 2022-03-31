@@ -240,11 +240,9 @@
   "ultra",
   "robin",
   "cynic",
-  "agora",
   "aroma",
   "caulk",
   "shake",
-  "pupal",
   "dodge",
   "swill",
   "tacit",
@@ -258,7 +256,6 @@
   "choke",
   "rupee",
   "nasty",
-  "mourn",
   "ahead",
   "brine",
   "cloth",
@@ -286,7 +283,6 @@
   "nymph",
   "found",
   "shall",
-  "harry",
   "stove",
   "lowly",
   "snout",
@@ -2313,5 +2309,9 @@
   "rower",
   "artsy",
   "rural",
-  "shave"
+  "shave", 
+  "harry",
+  "agora", 
+  "pupal",
+  "mourn"
 ]
