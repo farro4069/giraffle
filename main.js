@@ -240,7 +240,7 @@ function todaysWord() {
 function todaysWordle() {
 	const today = new Date();
 	const wordleStartDate = new Date('2021-06-19');
-	const wordleDays = Math.floor(((today.valueOf() - wordleStartDate.valueOf() )/1000/60/60/24) + 3 );
+	const wordleDays = Math.floor(((today.valueOf() - wordleStartDate.valueOf() )/1000/60/60/24));
 	return wordleDays;
 }
 
