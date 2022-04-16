@@ -1,3 +1,5 @@
+const nytAdjustment = 2;
+
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
 const modalAlert = document.querySelector('.modal__alert');
@@ -19,7 +21,6 @@ const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
 const wordleNumber = todaysWordle();
 const wordNumber = todaysWord();
-
 
 let gameOver = false;
 let allWords = [];
@@ -129,7 +130,7 @@ function scoreKeys(k) {
 } 
 
 function score () {
-	realAnswer = allWords[wordNumber];
+	realAnswer = allWords[wordNumber + nytAdjustment];
 	realLetter = realAnswer.split("");
 	checkLetter = [...realLetter];
 	checkLetter.forEach(a => checkWord = checkWord + a);
