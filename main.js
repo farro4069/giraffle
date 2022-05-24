@@ -1,4 +1,4 @@
-const nytAdjustment = 2;
+const nytAdjustment = 4;
 
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
@@ -241,7 +241,7 @@ function todaysWord() {
 function todaysWordle() {
 	const today = new Date();
 	const wordleStartDate = new Date('2021-06-19');
-	const wordleDays = Math.floor(((today.valueOf() - wordleStartDate.valueOf() )/1000/60/60/24));
+	const wordleDays = Math.floor(((today.valueOf() - wordleStartDate.valueOf() )/1000/60/60/24)) + 1;
 	return wordleDays;
 }
 
