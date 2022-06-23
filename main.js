@@ -129,7 +129,7 @@ function scoreKeys(k) {
 	}
 } 
 
-function score () {
+function score() {
 	realAnswer = allWords[wordNumber + nytAdjustment];
 	realLetter = realAnswer.split("");
 	checkLetter = [...realLetter];
@@ -191,7 +191,7 @@ function giveUp() {
 		surrender.children[i].textContent = realLetter[i];
 	}
 	modalGameOver.style.display = 'grid';
-	gameOver = true;
+	gameOver = false;
 }
 
 function showInstruct() {
