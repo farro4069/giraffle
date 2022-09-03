@@ -1,4 +1,4 @@
-const nytAdjustment = 5;
+const nytAdjustment = 15;
 
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
@@ -21,6 +21,8 @@ const shareButton = document.querySelector('.share');
 const sharePatch = document.querySelector('.share__patch')
 const wordleNumber = todaysWordle();
 const wordNumber = todaysWord();
+const gameNumberElement = document.getElementById('game_number');
+gameNumberElement.textContent = wordNumber;
 
 let gameOver = false;
 let allWords = [];
