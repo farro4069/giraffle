@@ -1,4 +1,6 @@
-const nytAdjustment = 15;
+/** to find the nytAdjustment >  allWords[ wordleNumber + 16 ] **/ 
+
+const nytAdjustment = 16;
 
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
